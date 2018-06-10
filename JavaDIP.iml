@@ -7,5 +7,19 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="OpenCV">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/resources/modules/opencv/opencv-341.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <NATIVE>
+          <root url="file://$MODULE_DIR$/resources/modules/opencv/x64" />
+        </NATIVE>
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/resources/modules/opencv/opencv-341.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
