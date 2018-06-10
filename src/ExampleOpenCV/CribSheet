@@ -1,0 +1,10 @@
+1. Чтение image файла:
+    Mat image = Imgcodecs.imread("resources/image/poli.jpg");
+
+2. Запись image файла:
+    Imgcodecs.imwrite("resources/image/poli-gray.jpg", image);
+
+3. GrayScale преобразования
+    Imgcodecs.imwrite("resources/image/poli-gray.jpg", image);
+
+4.
