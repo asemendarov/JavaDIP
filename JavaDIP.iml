@@ -8,7 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
-      <library name="OpenCV">
+      <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/resources/modules/opencv/opencv-341.jar!/" />
         </CLASSES>

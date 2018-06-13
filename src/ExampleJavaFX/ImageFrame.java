@@ -1,4 +1,4 @@
-package ExampleClassImage;
+package ExampleJavaFX;
 
 import javax.swing.*;
 import java.io.IOException;

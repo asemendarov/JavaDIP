@@ -1,6 +1,7 @@
-package ExampleOpenCV.Sample;
+package Tools;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
+import java.io.ByteArrayInputStream;
 
 import org.opencv.core.Mat;
 
@@ -8,9 +9,18 @@ import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import org.opencv.core.MatOfByte;
+import org.opencv.imgcodecs.Imgcodecs;
 
-public final class Utils
+public final class FXTool
 {
+    public static Image mat2Image(String ext, Mat frame){
+        MatOfByte buffer = new MatOfByte();
+        Imgcodecs.imencode(ext, frame, buffer);
+        return new Image(new ByteArrayInputStream(buffer.toArray()));
+    }
+
+
     /**
      * Convert a Mat object (OpenCV) in the corresponding Image for JavaFX
      *
@@ -18,7 +28,7 @@ public final class Utils
      *            the {@link Mat} representing the current frame
      * @return the {@link Image} to show
      */
-    public static Image mat2Image(Mat frame)
+    public static Image mat2ImageAlternative(Mat frame)
     {
         try
         {

@@ -1,4 +1,4 @@
-package ExampleClassImage;
+package ExampleJavaFX;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

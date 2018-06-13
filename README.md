@@ -1,37 +1,95 @@
-## Welcome to GitHub Pages
+# Digital Image Processing — Цифровая обработка изображений ([Pages](https://onocomments.github.io/JavaDIP/))
 
-You can use the [editor on GitHub](https://github.com/oNoComments/JavaDIP/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+#### Утановка OpenCV
+0. В директории `...\JavaDIP\resources\modules\opencv` имеются все необходимы файлы OpenCV.
+1. Для подключения модуля OpenCV выполните следующую инструкцию ([IDE Eclipse](http://opencv-java-tutorials.readthedocs.io/en/latest/01-installing-opencv-for-java.html))
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+IntelliJ IDEA:
 
-### Markdown
+    1. File -> Project Structure [Ctrl + Alt + Shift + S]
+    2. Project Settings -> Modules -> Dependencies -> Add -> JARs or directories...
+    3. Set path %USERPROFILE%\IdeaProjects\JavaDIP\resources\modules\opencv\opencv-341.jar -> Click OK
+    4. Edit module opencv-341.jar -> Add
+    5. Set path %USERPROFILE%\IdeaProjects\JavaDIP\resources\modules\opencv\x64 (or x86) -> Click OK
+    7. Click OK
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+#### Выдержки из ExampleJavaFX
+0. Чтение image файла:
 
-```markdown
-Syntax highlighted code block
+        // Реализация 1
+        File sourceimage = new File("source.gif");
+        image = ImageIO.read(sourceimage);
+        
+        // Реализация 2
+        InputStream is = new BufferedInputStream(new FileInputStream("source.gif"));
+        image = ImageIO.read(is);
+        
+        // Реализация 3
+        URL url = new URL("http://java-tips.org/source.gif");
+        image = ImageIO.read(url);
 
-# Header 1
-## Header 2
-### Header 3
+2. Получение значения каждого пикселя
 
-- Bulleted
-- List
+        c.getRed();
+        c.getGreen();
+        c.getBlue();
 
-1. Numbered
-2. List
+3. Получение ширины и высоты изображения
 
-**Bold** and _Italic_ and `Code` text
+        int width = image.getWidth();
+        int height = image.getHeight();
 
-[Link](url) and ![Image](src)
-```
+4. Чтобы вернуть тип изображения у класса Image есть метод GetType()
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+        String format = image.GetType();
 
-### Jekyll Themes
+5. GrayScale преобразования
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/oNoComments/JavaDIP/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+        Color c = new Color(image.getRGB(j, i));
+        int red = (int)(c.getRed() * 0.299);
+        int green = (int)(c.getGreen() * 0.587);
+        int blue = (int)(c.getBlue() *0.114);
+        Color newColor = new Color(
+            red+green+blue,
+            red+green+blue,
+            red+green+blue
+        );
+        image.setRGB(j,i,newColor.getRGB());
 
-### Support or Contact
+6. ...
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+#### Выдержки из ExampleOpenCV
+
+0. Обязательное наличие статического блока инициализации для работы с OpenCV
+    
+        static {
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+        }
+
+1. Чтение image файла:
+    
+        Mat image = Imgcodecs.imread("resources/image/poli.jpg");
+
+2. Запись image файла:
+    
+        Imgcodecs.imwrite("resources/image/poli-gray.jpg", image);
+
+3. GrayScale преобразования
+    
+        Imgcodecs.imwrite("resources/image/poli-gray.jpg", image);
+
+4. Создание и печать на экране матрицы 3x3
+
+        Mat mat = Mat.eye(3, 3, CvType.CV_8UC1);
+        System.out.println("mat = " + mat.dump());
+
+5. Чтение Image и вставка в ImageView средствами
+    
+        imageView.setImage(FXTool.mat2Image(".jpg", Imgcodecs.imread("resources/image/poli.jpg")))
+        
+        или
+            imageView.setImage(FXTool.mat2ImageAlternative(Imgcodecs.imread("resources/image/poli.jpg")));
+        или
+            imageView.setImage(new Image(new BufferedInputStream(new FileInputStream("resources/image/poli.jpg"))))
+
+6. ...

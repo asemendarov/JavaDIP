@@ -1,31 +1,15 @@
-package ExampleClassImage;
-
-import ExampleClassImage.ImageFrame;
-
-import javax.swing.*;
-import java.awt.*;
-import java.io.IOException;
-
-public class Main {
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                ImageFrame frame = new ImageFrame("DIP\\image\\cat.jpg");
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.setVisible(true);
-            } catch (IOException e) {
-                System.out.println(e);
-            }
-        });
-    }
-}
-
-/*
 0. Чтение image файла:
-    image = ImageIO.read(new File(filname));
+      // Реализация 1
+      File sourceimage = new File("source.gif");
+      image = ImageIO.read(sourceimage);
 
-1. Значение пикселя можно получить, используя следующий синтаксис:
-    Color c = new Color(image.getRGB(j, i));
+      // Реализация 2
+      InputStream is = new BufferedInputStream(new FileInputStream("source.gif"));
+      image = ImageIO.read(is);
+
+      // Реализация 3
+      URL url = new URL("http://java-tips.org/source.gif");
+      image = ImageIO.read(url);
 
 2. Получение значения каждого пикселя
     c.getRed();
@@ -52,4 +36,3 @@ public class Main {
     image.setRGB(j,i,newColor.getRGB());
 
 6.
- */

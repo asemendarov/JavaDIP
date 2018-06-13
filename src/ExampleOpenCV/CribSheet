@@ -1,3 +1,8 @@
+0. Обязательное наличие статического блока инициализации для работы с OpenCV
+    static {
+        System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+    }
+
 1. Чтение image файла:
     Mat image = Imgcodecs.imread("resources/image/poli.jpg");
 
@@ -7,4 +12,15 @@
 3. GrayScale преобразования
     Imgcodecs.imwrite("resources/image/poli-gray.jpg", image);
 
-4.
+4. Создание и печать на экране матрицы 3x3
+    Mat mat = Mat.eye(3, 3, CvType.CV_8UC1);
+    System.out.println("mat = " + mat.dump());
+
+5. Чтение Image и вставка в ImageView средствами
+    imageView.setImage(FXTool.mat2Image(".jpg", Imgcodecs.imread("resources/image/poli.jpg")))
+    или
+        imageView.setImage(FXTool.mat2ImageAlternative(Imgcodecs.imread("resources/image/poli.jpg")));
+    или
+        imageView.setImage(new Image(new BufferedInputStream(new FileInputStream("resources/image/poli.jpg"))))
+
+6.
