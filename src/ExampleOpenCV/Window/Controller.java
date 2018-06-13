@@ -21,7 +21,7 @@ public class Controller {
     public Label lableInf;
 
     @FXML
-    public void startCamera(ActionEvent actionEvent) {
+    public void run(ActionEvent actionEvent) {
         try {
             //imageView.setImage(new Image(new BufferedInputStream(new FileInputStream("resources/image/poli.jpg"))));
             /*or*/ // imageView.setImage(FXTool.mat2ImageAlternative(Imgcodecs.imread("resources/image/poli.jpg")));

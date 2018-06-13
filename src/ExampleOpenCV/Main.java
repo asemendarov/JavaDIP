@@ -20,9 +20,19 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("window/sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Window/window.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root));
+
+        /*Scene scene = new new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("Window/application.css").toExternalForm());
+        primaryStage.setScene(scene);*/
+
+        // or
+
+        primaryStage.setScene(new Scene(root){{
+            getStylesheets().add(getClass().getResource("Window/application.css").toExternalForm());
+        }});
+
         primaryStage.show();
     }
 }
