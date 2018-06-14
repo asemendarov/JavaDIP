@@ -76,7 +76,7 @@ IntelliJ IDEA:
 
 3. GrayScale преобразования
     
-        Imgcodecs.imwrite("resources/image/poli-gray.jpg", image);
+        Imgproc.cvtColor(image, image, Imgproc.COLOR_BGR2GRAY);
 
 4. Создание и печать на экране матрицы 3x3
 
