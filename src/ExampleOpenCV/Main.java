@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import org.opencv.core.Core;
@@ -20,16 +21,18 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Window/window.fxml"));
+        FXMLLoader loader = FXMLLoader.load(getClass().getResource("Window/window.fxml"));
         primaryStage.setTitle("Hello World");
 
-        /*Scene scene = new new Scene(root);
+        BorderPane rootElement = loader.load();
+
+        /*Scene scene = new new Scene(rootElement);
         scene.getStylesheets().add(getClass().getResource("Window/application.css").toExternalForm());
         primaryStage.setScene(scene);*/
 
         // or
 
-        primaryStage.setScene(new Scene(root){{
+        primaryStage.setScene(new Scene(rootElement){{
             getStylesheets().add(getClass().getResource("Window/application.css").toExternalForm());
         }});
 
