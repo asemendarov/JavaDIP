@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DiscreteFourierTransform.Window.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DiscreteFourierTransform.Window.Controller">
     <left>
-        <VBox alignment="CENTER" prefWidth="300.0" spacing="10.0">
+        <VBox alignment="CENTER" prefWidth="300.0" spacing="5">
             <padding>
-                <Insets left="10.0" />
+                <Insets left="5" />
             </padding>
-            <ImageView fx:id="originalImage" fitHeight="150.0" fitWidth="200.0" smooth="false" />
+            <ImageView fx:id="originalImage" fitHeight="250.0" fitWidth="250.0" smooth="false" />
          <BorderPane.margin>
             <Insets left="10.0" />
          </BorderPane.margin>
@@ -23,12 +23,12 @@
     <right>
         <VBox alignment="CENTER" prefWidth="300.0" spacing="10">
             <padding>
-                <Insets right="10.0" />
+                <Insets right="5" />
             </padding>
-            <ImageView fx:id="transformedImage" fitHeight="150.0" fitWidth="200.0" />
-            <ImageView fx:id="antitransformedImage" fitHeight="150.0" fitWidth="200.0" />
+            <ImageView fx:id="transformedImage" fitHeight="250.0" fitWidth="250.0" />
+            <ImageView fx:id="antitransformedImage" fitHeight="250.0" fitWidth="250.0" />
          <BorderPane.margin>
-            <Insets right="10.0" />
+            <Insets right="5" />
          </BorderPane.margin>
         </VBox>
     </right>
@@ -38,11 +38,11 @@
                 <Insets bottom="25" left="25" right="25" top="25" />
             </padding>
             <Button alignment="center" onAction="#loadImage" text="Load Image" />
-            <Button fx:id="transformButton" alignment="center" onAction="#transformImage" text="Apply transformation" />
-            <Button fx:id="antitransformButton" alignment="center" onAction="#antitransformImage" text="Apply anti transformation" />
+            <Button fx:id="transformButton" alignment="center" onAction="#transformImage" text="Apply transformation" disable="true"/>
+            <Button fx:id="antitransformButton" alignment="center" onAction="#antitransformImage" text="Apply anti transformation" disable="true"/>
         </HBox>
     </bottom>
    <top>
-      <Label fx:id="lableInfo" prefHeight="50.0" BorderPane.alignment="CENTER" />
+      <Label fx:id="lableInfo" BorderPane.alignment="CENTER" />
    </top>
 </BorderPane>
