@@ -1,6 +1,5 @@
-package VideoCaptureOpenCV;
+package DiscreteFourierTransform;
 
-import VideoCaptureOpenCV.WindowThread.Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,6 +8,7 @@ import javafx.stage.Stage;
 import org.opencv.core.Core;
 
 import java.io.IOException;
+
 
 public class Main extends Application {
 
@@ -23,18 +23,22 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("Window/window.fxml"));
+        // FXMLLoader loader = new FXMLLoader(getClass().getResource("Window/window.fxml"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("WindowThread/window.fxml"));
 
         BorderPane rootElement = loader.load();
 
         primaryStage.setScene(new Scene(rootElement){{
-            //getStylesheets().add(getClass().getResource("Window/application.css").toExternalForm());
-            getStylesheets().add(getClass().getResource("Window/application.css").toExternalForm());
+            // getStylesheets().add(getClass().getResource("Window/application.css").toExternalForm());
+            getStylesheets().add(getClass().getResource("WindowThread/application.css").toExternalForm());
         }});
 
-        Controller controller = loader.getController();
+        // Window
+        //DiscreteFourierTransform.Window.Controller controller = loader.getController();
+        // controller.setStageWindow(primaryStage);
 
+        // WindowThread
+        DiscreteFourierTransform.WindowThread.Controller controller = loader.getController();
         primaryStage.setOnCloseRequest((we -> {
             try {
                 controller.stop();
