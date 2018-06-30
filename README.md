@@ -1,5 +1,7 @@
 # Digital Image Processing — Цифровая обработка изображений ([Pages](https://onocomments.github.io/JavaDIP/))
 
+UPD (30.06.18) Чуть позже я сделаю отчет о проделанной работе и переделаю README.me
+
 #### Утановка OpenCV
 0. В директории `...\JavaDIP\resources\modules\opencv` имеются все необходимы файлы OpenCV.
 1. Для подключения модуля OpenCV выполните следующую инструкцию ([IDE Eclipse](http://opencv-java-tutorials.readthedocs.io/en/latest/01-installing-opencv-for-java.html))
