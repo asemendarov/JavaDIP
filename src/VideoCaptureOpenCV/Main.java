@@ -30,7 +30,7 @@ public class Main extends Application {
 
         primaryStage.setScene(new Scene(rootElement){{
             //getStylesheets().add(getClass().getResource("Window/application.css").toExternalForm());
-            getStylesheets().add(getClass().getResource("Window/application.css").toExternalForm());
+            getStylesheets().add(getClass().getResource("WindowThread/application.css").toExternalForm());
         }});
 
         Controller controller = loader.getController();
