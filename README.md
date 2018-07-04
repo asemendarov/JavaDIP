@@ -1,97 +1,42 @@
-# Digital Image Processing — Цифровая обработка изображений ([Pages](https://onocomments.github.io/JavaDIP/))
+### Digital Image Processing — Цифровая обработка изображений ([io](https://onocomments.github.io/JavaDIP/))
 
-UPD (30.06.18) Чуть позже я сделаю отчет о проделанной работе и переделаю README.me
-
-#### Утановка OpenCV
+### Утановка OpenCV
 0. В директории `...\JavaDIP\resources\modules\opencv` имеются все необходимы файлы OpenCV.
 1. Для подключения модуля OpenCV выполните следующую инструкцию ([IDE Eclipse](http://opencv-java-tutorials.readthedocs.io/en/latest/01-installing-opencv-for-java.html))
 
+```
 IntelliJ IDEA:
 
-    1. File -> Project Structure [Ctrl + Alt + Shift + S]
-    2. Project Settings -> Modules -> Dependencies -> Add -> JARs or directories...
-    3. Set path %USERPROFILE%\IdeaProjects\JavaDIP\resources\modules\opencv\opencv-341.jar -> Click OK
-    4. Edit module opencv-341.jar -> Add
-    5. Set path %USERPROFILE%\IdeaProjects\JavaDIP\resources\modules\opencv\x64 (or x86) -> Click OK
-    7. Click OK
+0. File -> Project Structure [Ctrl + Alt + Shift + S]
+1. Project Settings -> Modules -> Dependencies -> Add -> JARs or directories...
+2. Set path %USERPROFILE%\IdeaProjects\JavaDIP\resources\modules\opencv\opencv-341.jar -> Click OK
+3. Edit module opencv-341.jar -> Add
+4. Set path %USERPROFILE%\IdeaProjects\JavaDIP\resources\modules\opencv\x64 (or x86) -> Click OK
+5. Click OK
+```
 
-#### Выдержки из ExampleJavaFX
-0. Чтение image файла:
+### Пакет ExampleJavaFX
+Очень простое JavaFX приложение, **без** использования fxmi и OpenCV, демонстрирующее работу с пакетом `javax.imageio.ImageIO`
 
-        // Реализация 1
-        File sourceimage = new File("source.gif");
-        image = ImageIO.read(sourceimage);
-        
-        // Реализация 2
-        InputStream is = new BufferedInputStream(new FileInputStream("source.gif"));
-        image = ImageIO.read(is);
-        
-        // Реализация 3
-        URL url = new URL("http://java-tips.org/source.gif");
-        image = ImageIO.read(url);
+![ExampleJavaFX](https://user-images.githubusercontent.com/31689842/42292159-32d0e70e-7fd9-11e8-9e23-7f82a6bf3730.png)
 
-2. Получение значения каждого пикселя
+### Пакет ExampleOpenCV
+Очень простое JavaFX приложение, **c** использования fxmi и OpenCV, демонстрирующее работу с пакетом `org.opencv.imgcodecs.Imgcodecs`
 
-        c.getRed();
-        c.getGreen();
-        c.getBlue();
+![ExampleOpenCV](https://user-images.githubusercontent.com/31689842/42292631-856a61a4-7fdc-11e8-87f7-b716cd945d76.png)
 
-3. Получение ширины и высоты изображения
+### Пакет VideoCaptureOpenCV
+Приложение чуть посложней, но не особо. В этом пакете и в последующих используется fxmi и OpenCV.
+Данная работа демонстрирует то, как можно захватывать  видеопоток с веб-камеры, а затем отображать его на пользовательском интерфейсе (GUI). Имеется две реализации: без многопоточности (просто захватываем один кадр и отображаем на GUI) и с многопоточностью (полноценное отображаение видеопотока на GUI).
 
-        int width = image.getWidth();
-        int height = image.getHeight();
+![VideoCaptureOpenCV](https://user-images.githubusercontent.com/31689842/42293409-a901e01e-7fe2-11e8-9f5a-8d8676b65820.gif)
 
-4. Чтобы вернуть тип изображения у класса Image есть метод GetType()
+### Пакет HistogramVideoCapture
+В этом приложении реализаванно: изменение цвета видеопотока, добавление логотипа поверх видеопотока, отображение гистограммы видеопотока (как одиного, так и трех каналов).
 
-        String format = image.GetType();
+![HistogramVideoCapture](https://user-images.githubusercontent.com/31689842/42293680-a445c66a-7fe4-11e8-8b1f-77f849125425.gif)
 
-5. GrayScale преобразования
+### Пакет FaceDetectionAndTracking
+В этом приложении демонстрируется использование классификатор Хаара и классификатор LBP, которые уже прошли обучение (распространяются OpenCV) для обнаружения и отслеживания движущегося лица в видеопотоке.
 
-        Color c = new Color(image.getRGB(j, i));
-        int red = (int)(c.getRed() * 0.299);
-        int green = (int)(c.getGreen() * 0.587);
-        int blue = (int)(c.getBlue() *0.114);
-        Color newColor = new Color(
-            red+green+blue,
-            red+green+blue,
-            red+green+blue
-        );
-        image.setRGB(j,i,newColor.getRGB());
-
-6. ...
-
-#### Выдержки из ExampleOpenCV
-
-0. Обязательное наличие статического блока инициализации для работы с OpenCV
-    
-        static {
-            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
-        }
-
-1. Чтение image файла:
-    
-        Mat image = Imgcodecs.imread("resources/image/poli.jpg");
-
-2. Запись image файла:
-    
-        Imgcodecs.imwrite("resources/image/poli-gray.jpg", image);
-
-3. GrayScale преобразования
-    
-        Imgproc.cvtColor(image, image, Imgproc.COLOR_BGR2GRAY);
-
-4. Создание и печать на экране матрицы 3x3
-
-        Mat mat = Mat.eye(3, 3, CvType.CV_8UC1);
-        System.out.println("mat = " + mat.dump());
-
-5. Чтение Image и вставка в ImageView средствами
-    
-        imageView.setImage(FXTool.mat2Image(".jpg", Imgcodecs.imread("resources/image/poli.jpg")))
-        
-        или
-            imageView.setImage(FXTool.mat2ImageAlternative(Imgcodecs.imread("resources/image/poli.jpg")));
-        или
-            imageView.setImage(new Image(new BufferedInputStream(new FileInputStream("resources/image/poli.jpg"))))
-
-6. ...
+![FaceDetectionAndTracking](https://user-images.githubusercontent.com/31689842/42294285-3721b6b2-7fe8-11e8-9bc0-9241bf97fd20.gif)
