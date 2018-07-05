@@ -21,7 +21,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = FXMLLoader.load(getClass().getResource("Window/window.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Window/window.fxml"));
         primaryStage.setTitle("Hello World");
 
         BorderPane rootElement = loader.load();
